@@ -33,6 +33,12 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/security-cdn.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list \
 ;fi
 
+ARG HTTP_PROXY
+RUN if [ "${HTTP_PROXY}" != "" ]; then \
+    # Needed for pecl to succeed
+    pear config-set http_proxy ${HTTP_PROXY} \
+;fi
+
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
     apt-get update -yqq && \

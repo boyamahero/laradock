@@ -183,6 +183,8 @@ services:
       build:
         context: ./php-fpm
         args:
+          - HTTP_PROXY=${HTTP_PROXY}
+          - HTTPS_PROXY=${HTTP_PROXY} 
           - CHANGE_SOURCE=${CHANGE_SOURCE}
           - BASE_IMAGE_TAG_PREFIX=${PHP_FPM_BASE_IMAGE_TAG_PREFIX}
           - LARADOCK_PHP_VERSION=${PHP_VERSION}
