@@ -61,6 +61,8 @@ services:
       build:
         context: ./workspace
         args:
+          - HTTP_PROXY=${HTTP_PROXY}
+          - HTTPS_PROXY=${HTTP_PROXY} 
           - CHANGE_SOURCE=${CHANGE_SOURCE}
           - SHELL_OH_MY_ZSH=${SHELL_OH_MY_ZSH}
           - UBUNTU_SOURCE=${UBUNTU_SOURCE}
