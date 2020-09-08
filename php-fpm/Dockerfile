@@ -66,6 +66,16 @@ RUN set -xe; \
       docker-php-ext-install zip && \
       php -m | grep -q 'zip'
 
+      #--------------------------------------------------------------------------
+      # Optional font Thai
+      #--------------------------------------------------------------------------
+      RUN  apt-get update -yqq && \
+        mkdir -p /usr/share/fonts/turetype/thaifont && \
+        cd /tmp && \
+        curl -L https://github.com/boyamahero/14-Thai-Fonts/raw/master/14ThaiFonts.zip -O && \
+        unzip 14ThaiFonts.zip -d /usr/share/fonts/turetype/thaifont && \
+        apt install -y fontconfig xvfb && fc-cache -f -v && fc-list
+
 #
 #--------------------------------------------------------------------------
 # Optional Software's Installation
